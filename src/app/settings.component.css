@@ -1,0 +1,58 @@
+.settings-page {
+  max-width: 500px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 2rem;
+}
+.setting-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.setting-item label {
+  font-size: 1.1rem;
+}
+.state {
+  color: #1976d2;
+  font-weight: bold;
+}
+/* Global dark mode styles */
+body.dark-mode {
+  background: #181a1b !important;
+  color: #e0e0e0 !important;
+}
+body.dark-mode .navbar {
+  background: #222 !important;
+  color: #e0e0e0 !important;
+}
+body.dark-mode .navbar a {
+  color: #e0e0e0 !important;
+}
+body.dark-mode .navbar button {
+  background: #333 !important;
+  color: #fff !important;
+}
+body.dark-mode .settings-page,
+body.dark-mode .profile-page,
+body.dark-mode .reminders-page,
+body.dark-mode .task-item,
+body.dark-mode .task-form,
+body.dark-mode .auth-container {
+  background: #23272b !important;
+  color: #e0e0e0 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+}
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background: #181a1b !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #444 !important;
+}
+body.dark-mode button {
+  background: #1976d2 !important;
+  color: #fff !important;
+} 

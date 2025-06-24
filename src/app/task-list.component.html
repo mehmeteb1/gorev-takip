@@ -1,0 +1,42 @@
+<div class="task-list-controls">
+  <button (click)="addTask()">Add Task</button>
+  <select [(ngModel)]="selectedCategory" (change)="applyFilters()">
+    <option value="">All Categories</option>
+    <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+  </select>
+  <button (click)="setSort('createdAt')">Sort by Date</button>
+  <button (click)="setSort('priority')">Sort by Priority</button>
+  <button (click)="setSort('status')">Sort by Status</button>
+</div>
+
+<app-task-form *ngIf="showForm" [task]="editingTask" (saved)="onFormSaved()"></app-task-form>
+
+<div class="task-list">
+  <div *ngFor="let task of filteredTasks" class="task-item" [class.overdue]="task.dueDate && task.dueDate < Date.now() && task.status !== 'completed'">
+    <div class="task-header">
+      <h3>{{ task.title }}</h3>
+      <span class="category">{{ task.category }}</span>
+    </div>
+    <div class="task-meta">
+      <span>Status: {{ task.status }}</span>
+      <span>Priority: {{ task.priority }}</span>
+      <span>Date: {{ task.createdAt | date:'short' }}</span>
+      <span *ngIf="task.dueDate">Due: {{ task.dueDate | date:'short' }}</span>
+    </div>
+    <p>{{ task.description }}</p>
+    <div *ngIf="task.subtasks?.length" class="subtasks-list">
+      <label>Subtasks:</label>
+      <ul>
+        <li *ngFor="let sub of task.subtasks">
+          <input type="checkbox" [checked]="sub.completed" disabled />
+          <span [class.completed]="sub.completed">{{ sub.title }}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="task-actions">
+      <button (click)="editTask(task)">Edit</button>
+      <button (click)="deleteTask(task.id!)">Delete</button>
+    </div>
+    <app-task-comments [taskId]="task.id!" [comments]="task.comments || []"></app-task-comments>
+  </div>
+</div> 

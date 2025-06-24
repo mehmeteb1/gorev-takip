@@ -1,0 +1,10 @@
+<div class="settings-page">
+  <h2>Settings</h2>
+  <div class="setting-item">
+    <label>
+      <input type="checkbox" [(ngModel)]="darkMode" (change)="toggleDarkMode()" />
+      Dark Mode
+    </label>
+    <span class="state">{{ darkMode ? 'On' : 'Off' }}</span>
+  </div>
+</div> 

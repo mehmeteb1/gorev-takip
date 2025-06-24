@@ -1,0 +1,14 @@
+<div class="profile-page">
+  <h2>Profile</h2>
+  <div class="profile-info">
+    <div><strong>Email:</strong> {{ email }}</div>
+    <div><strong>UID:</strong> {{ uid }}</div>
+    <form (ngSubmit)="updateDisplayName()" class="display-name-form">
+      <label for="displayName">Display Name:</label>
+      <input id="displayName" type="text" [(ngModel)]="displayName" name="displayName" />
+      <button type="submit">Update</button>
+    </form>
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <div *ngIf="success" class="success">{{ success }}</div>
+  </div>
+</div> 

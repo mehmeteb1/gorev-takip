@@ -1,0 +1,16 @@
+<div class="reminders-page">
+  <h2>Reminders</h2>
+  <form (ngSubmit)="addReminder()" class="add-reminder-form">
+    <input type="text" [(ngModel)]="newReminder" name="newReminder" placeholder="Add a reminder..." required />
+    <button type="submit">Add</button>
+  </form>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <ul class="reminders-list">
+    <li *ngFor="let r of reminders | slice:0; let i = index; let last = last" class="reminder-item">
+      <span>{{ r.text }}</span>
+      <span class="date">{{ r.createdAt | date:'short' }}</span>
+      <button (click)="deleteReminder(r.id!)">Delete</button>
+    </li>
+  </ul>
+  <div *ngIf="!reminders.length" class="no-reminders">No reminders yet.</div>
+</div> 

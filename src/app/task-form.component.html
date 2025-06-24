@@ -1,0 +1,27 @@
+<form (ngSubmit)="submit()" class="task-form" autocomplete="off">
+  <input type="text" [(ngModel)]="title" name="title" placeholder="Title" required />
+  <input type="text" [(ngModel)]="category" name="category" placeholder="Category" required />
+  <textarea [(ngModel)]="description" name="description" placeholder="Description"></textarea>
+  <input type="datetime-local" [(ngModel)]="dueDate" name="dueDate" placeholder="Due Date" />
+  <div class="subtasks">
+    <label>Subtasks:</label>
+    <div *ngFor="let sub of subtasks; let i = index" class="subtask-row">
+      <input type="checkbox" [(ngModel)]="subtasks[i].completed" name="subtaskCompleted{{i}}" />
+      <input type="text" [(ngModel)]="subtasks[i].title" name="subtaskTitle{{i}}" placeholder="Subtask title" />
+      <button type="button" (click)="removeSubtask(i)">Remove</button>
+    </div>
+    <button type="button" (click)="addSubtask()">Add Subtask</button>
+  </div>
+  <select [(ngModel)]="status" name="status">
+    <option value="pending">Pending</option>
+    <option value="in-progress">In Progress</option>
+    <option value="completed">Completed</option>
+  </select>
+  <select [(ngModel)]="priority" name="priority">
+    <option value="low">Low</option>
+    <option value="medium">Medium</option>
+    <option value="high">High</option>
+  </select>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <button type="submit">{{ task?.id ? 'Update' : 'Add' }} Task</button>
+</form> 
